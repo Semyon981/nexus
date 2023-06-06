@@ -1,4 +1,4 @@
-module github.com/Semyon981/nexus/tree/main/services/users/proto/userspb
+module userpb
 
 go 1.20
 
