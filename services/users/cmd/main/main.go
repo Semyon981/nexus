@@ -4,7 +4,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/Semyon981/nexus/services/users/proto/userspb"
+	"github.com/Semyon981/nexus/proto/userspb"
 	"github.com/Semyon981/nexus/services/users/service/server"
 
 	_ "github.com/jackc/pgx/v5/stdlib"

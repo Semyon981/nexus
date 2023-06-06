@@ -2,7 +2,10 @@ module github.com/Semyon981/nexus/gateway
 
 go 1.20
 
-require google.golang.org/grpc v1.55.0
+require (
+	github.com/Semyon981/nexus/proto v0.0.0-20230606121537-69ad656b60d9
+	google.golang.org/grpc v1.55.0
+)
 
 require (
 	github.com/golang/protobuf v1.5.3 // indirect

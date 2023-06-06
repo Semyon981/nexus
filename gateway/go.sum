@@ -1,3 +1,5 @@
+github.com/Semyon981/nexus/proto v0.0.0-20230606121537-69ad656b60d9 h1:TqdlUrFlLdfh6XWoWnzd7J7PKtdlQnXba4JjKKvxVBI=
+github.com/Semyon981/nexus/proto v0.0.0-20230606121537-69ad656b60d9/go.mod h1:RuS9s7eosCCSOb3KBby/3QEJiF/LomMGCdsZV08Nx8E=
 github.com/golang/protobuf v1.5.0/go.mod h1:FsONVRAS9T7sI+LIUmWTfcYkHO4aIWwzhcaSAoJOfIk=
 github.com/golang/protobuf v1.5.3 h1:KhyjKVUg7Usr/dYsdSqoFveMYd5ko72D+zANwlG1mmg=
 github.com/golang/protobuf v1.5.3/go.mod h1:XVQd3VNwM+JqD3oG2Ue2ip4fOMUkwXdXDdiuN0vRsmY=
