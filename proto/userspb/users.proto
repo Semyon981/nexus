@@ -5,7 +5,7 @@ package userspb;
 option go_package = "/userspb";
 
   
-service UserService {
+service Service {
     rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
     rpc GetUserAuth(GetUserAuthRequest) returns (GetUserAuthResponse){}
     rpc GetUserId(GetUserIdRequest) returns (GetUserIdResponse){}
