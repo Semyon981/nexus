@@ -1,19 +1,19 @@
-package http
+package auth
 
 import (
 	"net/http"
 
-	"github.com/Semyon981/nexus/proto/userspb"
+	"github.com/Semyon981/nexus/proto/authpb"
 	"github.com/gin-gonic/gin"
 )
 
 type Handler struct {
-	c userspb.UserServiceClient
+	authclient authpb.ServiceClient
 }
 
-func NewHandler(c userspb.UserServiceClient) *Handler {
+func NewHandler(authclient authpb.ServiceClient) *Handler {
 	return &Handler{
-		c: c,
+		authclient: authclient,
 	}
 }
 
@@ -31,7 +31,8 @@ func (h *Handler) SignUp(c *gin.Context) {
 		return
 	}
 
-	if err := h.useCase.SignUp(c.Request.Context(), inp.Number, inp.Password, inp.Name, inp.Lastname); err != nil {
+	_, err := h.authclient.SignUp(c.Request.Context(), &authpb.SignUpRequest{Number: inp.Number, Password: inp.Password, Name: inp.Name, Lastname: inp.Lastname})
+	if err != nil {
 		c.AbortWithStatus(http.StatusConflict)
 		return
 	}
@@ -50,21 +51,15 @@ type signInInput struct {
 
 func (h *Handler) SignIn(c *gin.Context) {
 	inp := new(signInInput)
-
 	if err := c.BindJSON(inp); err != nil {
 		c.AbortWithStatus(http.StatusBadRequest)
 		return
 	}
 
-	token, err := h.useCase.SignIn(c.Request.Context(), inp.Number, inp.Password)
+	token, err := h.authclient.SignIn(c.Request.Context(), &authpb.SignInRequest{Number: inp.Number, Password: inp.Password})
 	if err != nil {
-		if err == auth.ErrUserNotFound {
-			c.AbortWithStatus(http.StatusUnauthorized)
-			return
-		}
-		c.AbortWithStatus(http.StatusInternalServerError)
-		return
+		c.AbortWithStatus(http.StatusUnauthorized)
 	}
 
-	c.JSON(http.StatusOK, signInResponse{Token: token})
+	c.JSON(http.StatusOK, signInResponse{Token: token.Token})
 }

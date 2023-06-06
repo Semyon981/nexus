@@ -3,9 +3,8 @@ module github.com/Semyon981/nexus/gateway
 go 1.20
 
 require (
-	github.com/Semyon981/nexus/proto v0.0.0-20230606121537-69ad656b60d9
+	github.com/Semyon981/nexus/proto v0.0.0-20230606173902-dd8b4ae811d8
 	github.com/gin-gonic/gin v1.9.1
-	github.com/golang-jwt/jwt/v5 v5.0.0
 	github.com/jackc/pgx/v5 v5.3.1
 	google.golang.org/grpc v1.55.0
 )

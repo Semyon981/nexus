@@ -1,12 +1,12 @@
-package http
+package auth
 
 import (
-	"github.com/Semyon981/nexus/gateway/auth"
+	"github.com/Semyon981/nexus/proto/authpb"
 	"github.com/gin-gonic/gin"
 )
 
-func RegisterHTTPEndpoints(router *gin.Engine, uc auth.UseCase) {
-	h := NewHandler(uc)
+func RegisterHTTPEndpoints(router *gin.Engine, authclient authpb.ServiceClient) {
+	h := NewHandler(authclient)
 
 	authEndpoints := router.Group("/auth")
 	{

@@ -1,20 +1,23 @@
-package http
+package auth
 
 import (
 	"net/http"
+	"strconv"
 	"strings"
 
-	"github.com/Semyon981/nexus/gateway/auth"
+	"github.com/Semyon981/nexus/proto/identifierpb"
 	"github.com/gin-gonic/gin"
 )
 
+const CtxUserKey = "id_users"
+
 type AuthMiddleware struct {
-	usecase auth.UseCase
+	identclient identifierpb.ServiceClient
 }
 
-func NewAuthMiddleware(usecase auth.UseCase) gin.HandlerFunc {
+func NewAuthMiddleware(identclient identifierpb.ServiceClient) gin.HandlerFunc {
 	return (&AuthMiddleware{
-		usecase: usecase,
+		identclient: identclient,
 	}).Handle
 }
 
@@ -36,11 +39,17 @@ func (m *AuthMiddleware) Handle(c *gin.Context) {
 		return
 	}
 
-	id_users, err := m.usecase.ParseToken(c.Request.Context(), headerParts[1])
+	resp, err := m.identclient.JwtParse(c.Request.Context(), &identifierpb.JwtParseRequest{Token: headerParts[1]})
 	if err != nil {
 		c.AbortWithStatus(http.StatusUnauthorized)
 		return
 	}
 
-	c.Set(auth.CtxUserKey, id_users)
+	id, err := strconv.ParseInt(resp.Subject, 10, 64)
+	if err != nil {
+		c.AbortWithStatus(http.StatusInternalServerError)
+		return
+	}
+
+	c.Set(CtxUserKey, id)
 }

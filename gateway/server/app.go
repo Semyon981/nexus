@@ -8,36 +8,38 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/Semyon981/nexus/gateway/auth"
-	"github.com/Semyon981/nexus/proto/userspb"
+	"github.com/Semyon981/nexus/gateway/http/auth"
+	"github.com/Semyon981/nexus/proto/authpb"
+	"github.com/Semyon981/nexus/proto/identifierpb"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-
-	authhttp "github.com/Semyon981/nexus/gateway/auth/http"
-	authusecase "github.com/Semyon981/nexus/gateway/auth/usecase"
 )
 
 type App struct {
-	httpServer *http.Server
-	authUC     auth.UseCase
+	httpServer  *http.Server
+	authclient  authpb.ServiceClient
+	identclient identifierpb.ServiceClient
 }
 
 func NewApp() *App {
 
-	conn, err := grpc.Dial("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.Dial("localhost:50053", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
-	c := userspb.NewUserServiceClient(conn)
+
+	c1 := authpb.NewServiceClient(conn)
+
+	conn, err = grpc.Dial("localhost:50052", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
+	c2 := identifierpb.NewServiceClient(conn)
 
 	return &App{
-		authUC: authusecase.NewAuthUseCase(
-			c,
-			"salt",
-			[]byte("key"),
-			time.Minute*60,
-		),
+		authclient:  c1,
+		identclient: c2,
 	}
 }
 
@@ -49,10 +51,14 @@ func (a *App) Run(port string) error {
 		//gin.Logger(),
 	)
 
-	authhttp.RegisterHTTPEndpoints(router, a.authUC)
+	auth.RegisterHTTPEndpoints(router, a.authclient)
 
-	//authMiddleware := authhttp.NewAuthMiddleware(a.authUC)
-	//api := router.Group("/api", authMiddleware)
+	authMiddleware := auth.NewAuthMiddleware(a.identclient)
+
+	api := router.Group("/api", authMiddleware)
+	{
+		api.GET("ping", func(c *gin.Context) { c.JSON(200, "pong") })
+	}
 
 	a.httpServer = &http.Server{
 		Addr:           ":" + port,

@@ -1,5 +1,5 @@
-github.com/Semyon981/nexus/proto v0.0.0-20230606121537-69ad656b60d9 h1:TqdlUrFlLdfh6XWoWnzd7J7PKtdlQnXba4JjKKvxVBI=
-github.com/Semyon981/nexus/proto v0.0.0-20230606121537-69ad656b60d9/go.mod h1:RuS9s7eosCCSOb3KBby/3QEJiF/LomMGCdsZV08Nx8E=
+github.com/Semyon981/nexus/proto v0.0.0-20230606173902-dd8b4ae811d8 h1:kgD8S+CIcabktsbDSmplekoB/+uS1lhr8Y/S26hBMzY=
+github.com/Semyon981/nexus/proto v0.0.0-20230606173902-dd8b4ae811d8/go.mod h1:RuS9s7eosCCSOb3KBby/3QEJiF/LomMGCdsZV08Nx8E=
 github.com/bytedance/sonic v1.5.0/go.mod h1:ED5hyg4y6t3/9Ku1R6dU/4KyJ48DZ4jPhfY1O2AihPM=
 github.com/bytedance/sonic v1.9.1 h1:6iJ6NqdoxCDr6mbY8h18oSO+cShGSMRGCEo7F2h0x8s=
 github.com/bytedance/sonic v1.9.1/go.mod h1:i736AoUSYt75HyZLoJW9ERYxcy6eaN6h4BZXU064P/U=
@@ -25,8 +25,6 @@ github.com/go-playground/validator/v10 v10.14.0 h1:vgvQWe3XCz3gIeFDm/HnTIbj6UGmg
 github.com/go-playground/validator/v10 v10.14.0/go.mod h1:9iXMNT7sEkjXb0I+enO7QXmzG6QCsPWY4zveKFVRSyU=
 github.com/goccy/go-json v0.10.2 h1:CrxCmQqYDkv1z7lO7Wbh2HN93uovUHgrECaO5ZrCXAU=
 github.com/goccy/go-json v0.10.2/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MGFi0w8I=
-github.com/golang-jwt/jwt/v5 v5.0.0 h1:1n1XNM9hk7O9mnQoNBGolZvzebBQ7p93ULHRc28XJUE=
-github.com/golang-jwt/jwt/v5 v5.0.0/go.mod h1:pqrtFR0X4osieyHYxtmOUWsAWrfe1Q5UVIyoH402zdk=
 github.com/golang/protobuf v1.5.0/go.mod h1:FsONVRAS9T7sI+LIUmWTfcYkHO4aIWwzhcaSAoJOfIk=
 github.com/golang/protobuf v1.5.3 h1:KhyjKVUg7Usr/dYsdSqoFveMYd5ko72D+zANwlG1mmg=
 github.com/golang/protobuf v1.5.3/go.mod h1:XVQd3VNwM+JqD3oG2Ue2ip4fOMUkwXdXDdiuN0vRsmY=
