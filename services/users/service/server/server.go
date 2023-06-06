@@ -32,3 +32,10 @@ func (s *server) CreateUser(ctx context.Context, in *userspb.CreateUserRequest) 
 	err := s.repo.CreateUser(ctx, in.Number, in.Password, in.Name, in.Lastname)
 	return &userspb.CreateUserResponse{}, err
 }
+
+func (s *server) GetUserId(ctx context.Context, in *userspb.GetUserIdRequest) (*userspb.GetUserIdResponse, error) {
+
+	resp, err := s.repo.GetUserId(ctx, in.IdUsers)
+
+	return &userspb.CreateUserResponse{IdUsers: resp.Id_users, Number: resp.Number, Password: resp.Password, Name: resp.Name, Lastname: resp.Lastname}, err
+}
