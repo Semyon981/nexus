@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"users/proto/userspb"
 	"users/service/repository/postgresql"
 
 	"github.com/jmoiron/sqlx"
