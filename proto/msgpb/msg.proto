@@ -13,7 +13,7 @@ message Message {
 }
 
   
-service UserService {
+service Service {
     rpc SendMessage(SendMessageRequest) returns (SendMessageResponse) {}
     rpc GetMessages(GetMessagesRequest) returns (GetMessagesResponse) {}
 }
