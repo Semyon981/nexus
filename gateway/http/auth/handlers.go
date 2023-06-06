@@ -3,17 +3,17 @@ package http
 import (
 	"net/http"
 
-	"github.com/Semyon981/nexus/gateway/auth"
+	"github.com/Semyon981/nexus/proto/userspb"
 	"github.com/gin-gonic/gin"
 )
 
 type Handler struct {
-	useCase auth.UseCase
+	c userspb.UserServiceClient
 }
 
-func NewHandler(useCase auth.UseCase) *Handler {
+func NewHandler(c userspb.UserServiceClient) *Handler {
 	return &Handler{
-		useCase: useCase,
+		c: c,
 	}
 }
 

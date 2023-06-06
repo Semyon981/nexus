@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/Semyon981/nexus/proto/userspb"
+	"github.com/Semyon981/nexus/services/users/service"
 	"github.com/Semyon981/nexus/services/users/service/repository/postgresql"
 
 	"github.com/jmoiron/sqlx"
@@ -11,7 +12,7 @@ import (
 
 type server struct {
 	userspb.UnimplementedUserServiceServer
-	repo postgresql.UserRepository
+	repo service.UserRepository
 }
 
 func NewServer(db *sqlx.DB) *server {
@@ -20,8 +21,8 @@ func NewServer(db *sqlx.DB) *server {
 	}
 }
 
-func (s *server) AuthUser(ctx context.Context, in *userspb.AuthUserRequest) (*userspb.AuthUserResponse, error) {
-	id_users, err := s.repo.GetUser(ctx, in.Number, in.Password)
+func (s *server) GetUserAuth(ctx context.Context, in *userspb.AuthUserRequest) (*userspb.AuthUserResponse, error) {
+	id_users, err := s.repo.GetUserAuth(ctx, in.Number, in.Password)
 	return &userspb.AuthUserResponse{IdUsers: id_users}, err
 
 }

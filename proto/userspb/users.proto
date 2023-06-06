@@ -7,16 +7,33 @@ option go_package = "/userspb";
   
 service UserService {
     rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
-    rpc AuthUser (AuthUserRequest) returns (AuthUserResponse){}
+    rpc GetUserAuth(GetUserAuthRequest) returns (GetUserAuthResponse){}
+    rpc GetUserId(GetUserIdRequest) returns (GetUserIdResponse){}
 
 }
 
-message AuthUserRequest {
+
+message GetUserIdRequest{
+    int64 id_users = 1;
+}
+
+message GetUserIdResponse{
+    int64 id_users = 1;
+    string number = 2;
+    string password = 3;
+    string name = 4;
+    string lastname = 5;
+ 
+}
+
+
+
+message GetUserAuthRequest {
     string number = 1;
     string password = 2;
 }
 
-message AuthUserResponse {
+message GetUserAuthResponse {
     int64 id_users = 1;
 }
 
