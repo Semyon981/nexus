@@ -1,0 +1,5 @@
+port: 50052
+
+auth:
+  hash_salt: "hash_salt"
+  signing_key: "signing_key"
