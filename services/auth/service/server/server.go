@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"log"
 	"strconv"
 
 	"github.com/Semyon981/nexus/proto/authpb"
@@ -24,12 +25,14 @@ func (s *server) SignIn(ctx context.Context, in *authpb.SignInRequest) (*authpb.
 	passhash, err := s.identclient.Hash(ctx, &identifierpb.HashRequest{Str: in.Password})
 
 	if err != nil {
+		log.Println("1:", err)
 		return &authpb.SignInResponse{}, err
 	}
 
 	resp, err := s.usrclient.GetUserAuth(ctx, &userspb.GetUserAuthRequest{Number: in.Number, Password: passhash.Hash})
 
 	if err != nil {
+		log.Println("2:", err)
 		return &authpb.SignInResponse{}, err
 	}
 
@@ -42,6 +45,7 @@ func (s *server) SignUp(ctx context.Context, in *authpb.SignUpRequest) (*authpb.
 	passhash, err := s.identclient.Hash(ctx, &identifierpb.HashRequest{Str: in.Password})
 
 	if err != nil {
+		log.Println("1:", err)
 		return &authpb.SignUpResponse{}, err
 	}
 

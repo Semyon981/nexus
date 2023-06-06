@@ -59,6 +59,7 @@ func (h *Handler) SignIn(c *gin.Context) {
 	token, err := h.authclient.SignIn(c.Request.Context(), &authpb.SignInRequest{Number: inp.Number, Password: inp.Password})
 	if err != nil {
 		c.AbortWithStatus(http.StatusUnauthorized)
+		return
 	}
 
 	c.JSON(http.StatusOK, signInResponse{Token: token.Token})

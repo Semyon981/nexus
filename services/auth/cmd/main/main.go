@@ -19,11 +19,16 @@ func main() {
 		log.Fatalf("%s", err.Error())
 	}
 
-	conn, err := grpc.Dial("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.Dial("localhost:50052", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
 	c1 := identifierpb.NewServiceClient(conn)
+
+	conn, err = grpc.Dial("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
 	c2 := userspb.NewUserServiceClient(conn)
 
 	srv := server.NewServer(c1, c2, viper.GetInt64("EXPJWT"))

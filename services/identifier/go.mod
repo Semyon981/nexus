@@ -3,7 +3,7 @@ module github.com/Semyon981/nexus/services/identifier
 go 1.20
 
 require (
-	github.com/Semyon981/nexus/proto v0.0.0-20230606173902-dd8b4ae811d8
+	github.com/Semyon981/nexus/proto v0.0.0-20230606192114-7f84ad93c1e0
 	github.com/golang-jwt/jwt/v5 v5.0.0
 	github.com/spf13/viper v1.16.0
 	google.golang.org/grpc v1.55.0
