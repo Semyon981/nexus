@@ -2,8 +2,9 @@ package server
 
 import (
 	"context"
-	"users/proto/userspb"
-	"users/service/repository/postgresql"
+
+	"github.com/Semyon981/nexus/services/users/proto/userspb"
+	"github.com/Semyon981/nexus/services/users/service/repository/postgresql"
 
 	"github.com/jmoiron/sqlx"
 )

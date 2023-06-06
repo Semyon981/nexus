@@ -6,8 +6,6 @@ import (
 	"log"
 	"time"
 
-	"gateway/proto/users"
-
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )

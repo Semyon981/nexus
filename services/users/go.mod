@@ -1,4 +1,4 @@
-module users
+module github.com/Semyon981/nexus/services/users
 
 go 1.20
 

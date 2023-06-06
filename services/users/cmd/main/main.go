@@ -3,8 +3,9 @@ package main
 import (
 	"log"
 	"net"
-	"users/proto/userspb"
-	"users/service/server"
+
+	"github.com/Semyon981/nexus/services/users/proto/userspb"
+	"github.com/Semyon981/nexus/services/users/service/server"
 
 	_ "github.com/jackc/pgx/v5/stdlib"
 	"github.com/jmoiron/sqlx"
