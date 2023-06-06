@@ -6,6 +6,7 @@ import (
 
 	"github.com/Semyon981/nexus/proto/msgpb"
 	"github.com/Semyon981/nexus/proto/userspb"
+	"github.com/Semyon981/nexus/services/msg/models"
 	"github.com/Semyon981/nexus/services/msg/service"
 	"github.com/Semyon981/nexus/services/msg/service/repository/postgresql"
 	"github.com/jmoiron/sqlx"
@@ -24,7 +25,8 @@ func NewServer(db *sqlx.DB) *server {
 }
 
 func (s *server) GetMessages(ctx context.Context, in *msgpb.GetMessagesRequest) (*msgpb.GetMessagesResponse, error) {
-	//res := make([]models.Message, 0)
+	res := make([]models.Message, 0)
+	s.repo.GetMessages(ctx)
 
 }
 
