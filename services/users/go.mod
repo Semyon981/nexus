@@ -3,7 +3,7 @@ module github.com/Semyon981/nexus/services/users
 go 1.20
 
 require (
-	github.com/Semyon981/nexus/proto v0.0.0-20230606134059-a1ff0d7d7bad
+	github.com/Semyon981/nexus/proto v0.0.0-20230606153319-d4794c16527c
 	github.com/jackc/pgx/v5 v5.3.1
 	github.com/jmoiron/sqlx v1.3.5
 	google.golang.org/grpc v1.55.0

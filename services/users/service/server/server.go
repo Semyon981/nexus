@@ -21,9 +21,9 @@ func NewServer(db *sqlx.DB) *server {
 	}
 }
 
-func (s *server) GetUserAuth(ctx context.Context, in *userspb.AuthUserRequest) (*userspb.AuthUserResponse, error) {
+func (s *server) GetUserAuth(ctx context.Context, in *userspb.GetUserAuthRequest) (*userspb.GetUserAuthResponse, error) {
 	id_users, err := s.repo.GetUserAuth(ctx, in.Number, in.Password)
-	return &userspb.AuthUserResponse{IdUsers: id_users}, err
+	return &userspb.GetUserAuthResponse{IdUsers: id_users}, err
 
 }
 
@@ -37,5 +37,5 @@ func (s *server) GetUserId(ctx context.Context, in *userspb.GetUserIdRequest) (*
 
 	resp, err := s.repo.GetUserId(ctx, in.IdUsers)
 
-	return &userspb.CreateUserResponse{IdUsers: resp.Id_users, Number: resp.Number, Password: resp.Password, Name: resp.Name, Lastname: resp.Lastname}, err
+	return &userspb.GetUserIdResponse{IdUsers: resp.Id_users, Number: resp.Number, Password: resp.Password, Name: resp.Name, Lastname: resp.Lastname}, err
 }

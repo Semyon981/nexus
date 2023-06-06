@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package authpb;
+
+option go_package = "/authpb";
+
+  
+service Service {
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+
+}
