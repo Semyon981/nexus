@@ -9,8 +9,10 @@ import (
 	"time"
 
 	"github.com/Semyon981/nexus/gateway/http/auth"
+	"github.com/Semyon981/nexus/gateway/http/msg"
 	"github.com/Semyon981/nexus/proto/authpb"
 	"github.com/Semyon981/nexus/proto/identifierpb"
+	"github.com/Semyon981/nexus/proto/msgpb"
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -20,6 +22,7 @@ type App struct {
 	httpServer  *http.Server
 	authclient  authpb.ServiceClient
 	identclient identifierpb.ServiceClient
+	msgclient   msgpb.ServiceClient
 }
 
 func NewApp() *App {
@@ -37,9 +40,16 @@ func NewApp() *App {
 	}
 	c2 := identifierpb.NewServiceClient(conn)
 
+	conn, err = grpc.Dial("localhost:50054", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
+	c3 := msgpb.NewServiceClient(conn)
+
 	return &App{
 		authclient:  c1,
 		identclient: c2,
+		msgclient:   c3,
 	}
 }
 
@@ -56,9 +66,10 @@ func (a *App) Run(port string) error {
 	authMiddleware := auth.NewAuthMiddleware(a.identclient)
 
 	api := router.Group("/api", authMiddleware)
-	{
-		api.GET("ping", func(c *gin.Context) { c.JSON(200, "pong") })
-	}
+
+	api.GET("ping", func(c *gin.Context) { c.JSON(200, "pong") })
+
+	msg.RegisterHTTPEndpoints(api, a.msgclient)
 
 	a.httpServer = &http.Server{
 		Addr:           ":" + port,
