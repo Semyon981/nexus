@@ -1,5 +1,7 @@
 github.com/Semyon981/nexus/proto v0.0.0-20230606192114-7f84ad93c1e0 h1:YKZbkyI7Q22Hp0lABnT7T3DO9fTWyf/Nxl3gFByxpMQ=
 github.com/Semyon981/nexus/proto v0.0.0-20230606192114-7f84ad93c1e0/go.mod h1:RuS9s7eosCCSOb3KBby/3QEJiF/LomMGCdsZV08Nx8E=
+github.com/Semyon981/nexus/proto v0.0.0-20230606212609-db2a9d8221c4 h1:nvuieeCnGe5GEDpGIffRRSGpGXyYjYDFUl/AJy9+Wu8=
+github.com/Semyon981/nexus/proto v0.0.0-20230606212609-db2a9d8221c4/go.mod h1:RuS9s7eosCCSOb3KBby/3QEJiF/LomMGCdsZV08Nx8E=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/go-sql-driver/mysql v1.6.0 h1:BCTh4TKNUYmOmMUcQ3IipzF5prigylS7XXjEkfCHuOE=

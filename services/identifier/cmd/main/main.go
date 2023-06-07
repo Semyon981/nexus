@@ -22,7 +22,7 @@ func main() {
 
 	identifierpb.RegisterServiceServer(s, srv)
 
-	lis, err := net.Listen("tcp", ":"+viper.GetString("port"))
+	lis, err := net.Listen("tcp", ":"+identifierpb.GetPort())
 
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
