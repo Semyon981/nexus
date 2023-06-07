@@ -1,5 +1,5 @@
-github.com/Semyon981/nexus/proto v0.0.0-20230606212609-db2a9d8221c4 h1:nvuieeCnGe5GEDpGIffRRSGpGXyYjYDFUl/AJy9+Wu8=
-github.com/Semyon981/nexus/proto v0.0.0-20230606212609-db2a9d8221c4/go.mod h1:RuS9s7eosCCSOb3KBby/3QEJiF/LomMGCdsZV08Nx8E=
+github.com/Semyon981/nexus/proto v0.0.0-20230607152836-f4e3b6262a4c h1:Lwpd228RztgLz9tw/PeZwqDcjvvdPii+yCO11GKv0Ag=
+github.com/Semyon981/nexus/proto v0.0.0-20230607152836-f4e3b6262a4c/go.mod h1:RuS9s7eosCCSOb3KBby/3QEJiF/LomMGCdsZV08Nx8E=
 github.com/bytedance/sonic v1.5.0/go.mod h1:ED5hyg4y6t3/9Ku1R6dU/4KyJ48DZ4jPhfY1O2AihPM=
 github.com/bytedance/sonic v1.9.1 h1:6iJ6NqdoxCDr6mbY8h18oSO+cShGSMRGCEo7F2h0x8s=
 github.com/bytedance/sonic v1.9.1/go.mod h1:i736AoUSYt75HyZLoJW9ERYxcy6eaN6h4BZXU064P/U=

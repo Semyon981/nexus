@@ -38,10 +38,8 @@ cloud.google.com/go/storage v1.14.0/go.mod h1:GrKmX003DSIwi9o29oFT7YDnHYwZoctc3f
 dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7gZCb22OMCxBHrMx7a5I7Hp++hsVxbQ4BYO7hU=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
-github.com/Semyon981/nexus/proto v0.0.0-20230606192114-7f84ad93c1e0 h1:YKZbkyI7Q22Hp0lABnT7T3DO9fTWyf/Nxl3gFByxpMQ=
-github.com/Semyon981/nexus/proto v0.0.0-20230606192114-7f84ad93c1e0/go.mod h1:RuS9s7eosCCSOb3KBby/3QEJiF/LomMGCdsZV08Nx8E=
-github.com/Semyon981/nexus/proto v0.0.0-20230606212609-db2a9d8221c4 h1:nvuieeCnGe5GEDpGIffRRSGpGXyYjYDFUl/AJy9+Wu8=
-github.com/Semyon981/nexus/proto v0.0.0-20230606212609-db2a9d8221c4/go.mod h1:RuS9s7eosCCSOb3KBby/3QEJiF/LomMGCdsZV08Nx8E=
+github.com/Semyon981/nexus/proto v0.0.0-20230607152836-f4e3b6262a4c h1:Lwpd228RztgLz9tw/PeZwqDcjvvdPii+yCO11GKv0Ag=
+github.com/Semyon981/nexus/proto v0.0.0-20230607152836-f4e3b6262a4c/go.mod h1:RuS9s7eosCCSOb3KBby/3QEJiF/LomMGCdsZV08Nx8E=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/chzyer/logex v1.1.10/go.mod h1:+Ywpsq7O8HXn0nuIou7OrIPyXbp3wmkHB+jjWRnGsAI=
 github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e/go.mod h1:nSuG5e5PlCu98SY8svDHJxuZscDgtXS6KTTbou5AhLI=

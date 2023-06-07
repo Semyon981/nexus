@@ -26,7 +26,7 @@ func main() {
 	s := grpc.NewServer()
 	msgpb.RegisterServiceServer(s, srv)
 
-	lis, err := net.Listen("tcp", ":50054")
+	lis, err := net.Listen("tcp", ":"+msgpb.GetPort())
 
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)

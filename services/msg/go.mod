@@ -3,7 +3,7 @@ module github.com/Semyon981/nexus/services/msg
 go 1.20
 
 require (
-	github.com/Semyon981/nexus/proto v0.0.0-20230606212609-db2a9d8221c4
+	github.com/Semyon981/nexus/proto v0.0.0-20230607152836-f4e3b6262a4c
 	github.com/jackc/pgx/v5 v5.3.1
 	github.com/jmoiron/sqlx v1.3.5
 	google.golang.org/grpc v1.55.0
