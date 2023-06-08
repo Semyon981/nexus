@@ -2,13 +2,13 @@ package server
 
 import (
 	"context"
-	"time"
 
 	"github.com/Semyon981/nexus/proto/msgpb"
 	"github.com/Semyon981/nexus/proto/userspb"
 	"github.com/Semyon981/nexus/services/msg/service"
 	"github.com/Semyon981/nexus/services/msg/service/repository/postgresql"
 	"github.com/jmoiron/sqlx"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type server struct {
@@ -37,7 +37,7 @@ func (s *server) GetMessages(ctx context.Context, in *msgpb.GetMessagesRequest) 
 			IdFrom:     res[i].Id_from,
 			IdTo:       res[i].Id_to,
 			Msg:        res[i].Msg,
-			Time:       res[i].Time.Unix(),
+			Time:       timestamppb.New(res[i].Time),
 		}
 		response = append(response, &message)
 	}
@@ -53,7 +53,7 @@ func (s *server) SendMessage(ctx context.Context, in *msgpb.SendMessageRequest) 
 		return &msgpb.SendMessageResponse{}, err
 	}
 
-	err = s.repo.SendMessage(ctx, in.IdFrom, in.IdTo, in.Msg, time.Unix(in.Time, 0))
+	err = s.repo.SendMessage(ctx, in.IdFrom, in.IdTo, in.Msg, in.Time.AsTime())
 	if err != nil {
 		return &msgpb.SendMessageResponse{}, err
 	}

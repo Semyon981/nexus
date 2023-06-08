@@ -30,7 +30,6 @@ func (s *server) SignIn(ctx context.Context, in *authpb.SignInRequest) (*authpb.
 	}
 
 	resp, err := s.usrclient.GetUserAuth(ctx, &userspb.GetUserAuthRequest{Number: in.Number, Password: passhash.Hash})
-
 	if err != nil {
 		log.Println("2:", err)
 		return &authpb.SignInResponse{}, err

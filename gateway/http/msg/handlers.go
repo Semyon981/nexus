@@ -4,11 +4,11 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"time"
 
 	"github.com/Semyon981/nexus/gateway/http/auth"
 	"github.com/Semyon981/nexus/proto/msgpb"
 	"github.com/gin-gonic/gin"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type Handler struct {
@@ -34,7 +34,8 @@ func (h *Handler) SendMessage(c *gin.Context) {
 	}
 	Id_users := c.MustGet(auth.CtxUserKey).(int64)
 
-	_, err := h.msgclient.SendMessage(c.Request.Context(), &msgpb.SendMessageRequest{IdFrom: Id_users, IdTo: inp.Id_to, Msg: inp.Msg, Time: time.Now().Unix()})
+	_, err := h.msgclient.SendMessage(c.Request.Context(), &msgpb.SendMessageRequest{IdFrom: Id_users, IdTo: inp.Id_to, Msg: inp.Msg, Time: timestamppb.Now()})
+
 	if err != nil {
 		c.AbortWithStatus(http.StatusBadRequest)
 		return
