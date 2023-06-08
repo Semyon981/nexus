@@ -25,6 +25,6 @@ func (r Repository) SendMessage(ctx context.Context, Id_from int64, Id_to int64,
 
 func (r Repository) GetMessages(ctx context.Context, Id_from int64, Id_to int64, limit int64, offset int64) ([]models.Message, error) {
 	res := []models.Message{}
-	err := r.db.Select(&res, `SELECT * FROM messages WHERE id_from = $3 AND id_to = $4 ORDER BY time DESC LIMIT $1 OFFSET $2 `, limit, offset, Id_from, Id_to)
+	err := r.db.Select(&res, `SELECT * FROM messages WHERE (id_from = $3 AND id_to = $4) OR (id_from = $4 AND id_to = $3) ORDER BY time DESC LIMIT $1 OFFSET $2 `, limit, offset, Id_from, Id_to)
 	return res, err
 }
