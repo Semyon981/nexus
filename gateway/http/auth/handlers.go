@@ -17,21 +17,15 @@ func NewHandler(authclient authpb.ServiceClient) *Handler {
 	}
 }
 
-type signUpInput struct {
-	Number   string `json:"number" binding:"required"`
-	Password string `json:"password" binding:"required"`
-	Name     string `json:"name" binding:"required"`
-	Lastname string `json:"lastname" binding:"required"`
-}
-
 func (h *Handler) SignUp(c *gin.Context) {
-	inp := new(signUpInput)
+	inp := new(authpb.SignUpRequest)
+
 	if err := c.BindJSON(inp); err != nil {
 		c.AbortWithStatus(http.StatusBadRequest)
 		return
 	}
 
-	_, err := h.authclient.SignUp(c.Request.Context(), &authpb.SignUpRequest{Number: inp.Number, Password: inp.Password, Name: inp.Name, Lastname: inp.Lastname})
+	_, err := h.authclient.SignUp(c.Request.Context(), inp)
 	if err != nil {
 		c.AbortWithStatus(http.StatusConflict)
 		return
@@ -40,27 +34,18 @@ func (h *Handler) SignUp(c *gin.Context) {
 	c.Status(http.StatusOK)
 }
 
-type signInResponse struct {
-	Token string `json:"token"`
-}
-
-type signInInput struct {
-	Number   string `json:"number" binding:"required"`
-	Password string `json:"password" binding:"required"`
-}
-
 func (h *Handler) SignIn(c *gin.Context) {
-	inp := new(signInInput)
+	inp := new(authpb.SignInRequest)
 	if err := c.BindJSON(inp); err != nil {
 		c.AbortWithStatus(http.StatusBadRequest)
 		return
 	}
 
-	token, err := h.authclient.SignIn(c.Request.Context(), &authpb.SignInRequest{Number: inp.Number, Password: inp.Password})
+	token, err := h.authclient.SignIn(c.Request.Context(), inp)
 	if err != nil {
 		c.AbortWithStatus(http.StatusUnauthorized)
 		return
 	}
 
-	c.JSON(http.StatusOK, signInResponse{Token: token.Token})
+	c.JSON(http.StatusOK, token)
 }
