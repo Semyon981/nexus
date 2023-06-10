@@ -1,0 +1,256 @@
+openapi: 3.0.0
+info: 
+  title: nexus-api
+  version: 1.0.0
+paths:
+  /ping:
+    get:
+      summary: Проверка работоспособности
+      #operationId: GetPing
+      responses:
+        '200':
+          description: Ok
+
+
+  /auth/sign-up:
+    post:
+      summary: Регистрация пользователей
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUpRequest'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+          
+  /auth/sign-in:
+    post:
+      summary: Авторизация пользователей
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignInRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignInResponse'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+
+
+  /me/msg:
+    post:
+      summary: Отправка сообщений
+      security: 
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendMessageRequest'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+    get:
+      summary: Получение списка сообщений с пользователем
+      security: 
+        - bearerAuth: []
+      parameters: 
+        - name: id_to
+          in: query
+          required: true
+          schema: 
+            type: integer
+            example: 1
+        - name: limit
+          in: query
+          required: false
+          schema: 
+            type: integer
+            example: 10
+            default: 10
+        - name: offset
+          in: query
+          required: false
+          schema: 
+            type: integer
+            example: 0
+            default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMessagesResponse'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+          
+          
+          
+  /users:
+    get:
+      summary: Получение списка пользователей
+      parameters: 
+        - name: limit
+          in: query
+          required: false
+          schema: 
+            type: integer
+            example: 10
+            default: 10
+        - name: offset
+          in: query
+          required: false
+          schema: 
+            type: integer
+            example: 0
+            default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUsersResponse'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+
+
+       
+components:
+  schemas:
+    SignUpRequest:
+      type: object
+      properties:
+        number:
+          type: string
+          example: "+79999999999"
+        password:
+          type: string
+          example: "qwerty123"
+        name:
+          type: string
+          example: "ivan"
+        lastname:
+          type: string
+          example: "ivanov"
+      required: 
+        - number
+        - password
+        - name
+        - lastname
+        
+        
+    SignInRequest:
+      type: object
+      properties:
+        number:
+          type: string
+          example: "+79999999999"
+        password:
+          type: string
+          example: "qwerty123"
+      required: 
+        - number
+        - password
+        
+        
+    SignInResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4OSIsImV4cCI6MTY4NjIwOTQ1MywiaWF0IjoxNjg2MjA1ODUzfQ.YmnPB35xz0YSm0ueyysghJzhSd8oKLIac6T6BMxcfDo"
+      required: 
+        - token
+        
+    SendMessageRequest:
+      type: object
+      properties:
+        id_to:
+          type: integer
+          example: 41
+        msg:
+          type: string
+          example: "Hello"
+      required: 
+        - id_to
+        - msg
+        
+    GetMessagesResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Message'
+        
+    GetUsersResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/User'  
+        
+        
+    Message:
+      type: object
+      properties:
+        id_messages:
+          type: integer
+          example: 15
+        id_from:
+          type: integer
+          example: 61
+        id_to:
+          type: integer
+          example: 62
+        msg:
+          type: string
+          example: "Hello"
+        time:
+          type: integer
+          example: 14215215
+      required: 
+        - id_messages
+        - id_to
+        - msg
+        - id_from
+        - time
+        
+        
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "ivan"
+        lastname:
+          type: string
+          example: "ivanov"
+      required: 
+      - name
+      - lastname
+        
+        
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+        
