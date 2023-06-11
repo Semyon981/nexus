@@ -37,7 +37,7 @@ services:
     networks:
       - net
     volumes:
-      - /volumes/dbmsg:/var/lib/postgresql/data
+      - dbmsgdata:/var/lib/postgresql/data
     
   users:
     container_name: users
@@ -55,10 +55,14 @@ services:
     networks:
       - net
     volumes:
-      - /volumes/dbusers:/var/lib/postgresql/data
+      - dbusersdata:/var/lib/postgresql/data
 
 
 
 networks:
   net:
     driver: bridge
+
+volumes:
+  dbusersdata: null
+  dbmsgdata: null
