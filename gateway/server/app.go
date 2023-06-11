@@ -27,7 +27,7 @@ type App struct {
 
 func NewApp() *App {
 
-	conn, err := grpc.Dial("localhost:8080", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.Dial("auth:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}

@@ -36,6 +36,8 @@ services:
       - POSTGRES_PASSWORD=password
     networks:
       - net
+    volumes:
+      - /volumes/dbmsg:/var/lib/postgresql/data
     
   users:
     container_name: users
@@ -52,6 +54,8 @@ services:
       - POSTGRES_PASSWORD=password
     networks:
       - net
+    volumes:
+      - /volumes/dbusers:/var/lib/postgresql/data
 
 
 
