@@ -26,6 +26,8 @@ services:
     build: ./services/msg
     networks:
       - net
+    depends_on:
+      - dbmsg
 
   dbmsg:
     container_name: dbmsg
@@ -34,16 +36,17 @@ services:
       - POSTGRES_PASSWORD=password
     networks:
       - net
-
-
+    
   users:
     container_name: users
     build: ./services/users
     networks:
       - net
+    depends_on:
+      - dbusers
   
   dbusers:
-    container_name: dbmsg
+    container_name: dbusers
     image: postgres:15.3
     environment:
       - POSTGRES_PASSWORD=password
