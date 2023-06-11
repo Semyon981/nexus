@@ -27,20 +27,20 @@ type App struct {
 
 func NewApp() *App {
 
-	conn, err := grpc.Dial("localhost:"+authpb.GetPort(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.Dial("localhost:8080", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
 
 	c1 := authpb.NewServiceClient(conn)
 
-	conn, err = grpc.Dial("localhost:"+identifierpb.GetPort(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err = grpc.Dial("identifier:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
 	c2 := identifierpb.NewServiceClient(conn)
 
-	conn, err = grpc.Dial("localhost:"+msgpb.GetPort(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err = grpc.Dial("msgpb:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
