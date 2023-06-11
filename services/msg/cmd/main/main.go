@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	conn, err := grpc.Dial("localhost:"+userspb.GetPort(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.Dial("users:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
@@ -26,7 +26,7 @@ func main() {
 	s := grpc.NewServer()
 	msgpb.RegisterServiceServer(s, srv)
 
-	lis, err := net.Listen("tcp", ":"+msgpb.GetPort())
+	lis, err := net.Listen("tcp", ":50051")
 
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
@@ -40,7 +40,7 @@ func main() {
 }
 
 func InitDB() *sqlx.DB {
-	url := "postgres://postgres:password@localhost"
+	url := "postgres://postgres:password@dbmsg/postgres"
 	database, err := sqlx.Open("pgx", url)
 	if err != nil {
 		log.Fatal(err)

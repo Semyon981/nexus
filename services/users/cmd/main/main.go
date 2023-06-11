@@ -20,7 +20,7 @@ func main() {
 
 	userspb.RegisterUserServiceServer(s, srv)
 
-	lis, err := net.Listen("tcp", ":"+userspb.GetPort())
+	lis, err := net.Listen("tcp", ":50051")
 
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
@@ -34,7 +34,7 @@ func main() {
 }
 
 func InitDB() *sqlx.DB {
-	url := "postgres://postgres:password@localhost"
+	url := "postgres://postgres:password@dbusers/postgres"
 	database, err := sqlx.Open("pgx", url)
 	if err != nil {
 		log.Fatal(err)

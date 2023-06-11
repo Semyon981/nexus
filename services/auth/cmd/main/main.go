@@ -19,13 +19,13 @@ func main() {
 		log.Fatalf("%s", err.Error())
 	}
 
-	conn, err := grpc.Dial("localhost:"+identifierpb.GetPort(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.Dial("identifier:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
 	c1 := identifierpb.NewServiceClient(conn)
 
-	conn, err = grpc.Dial("localhost:"+userspb.GetPort(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err = grpc.Dial("users:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
@@ -37,7 +37,7 @@ func main() {
 
 	authpb.RegisterServiceServer(s, srv)
 
-	lis, err := net.Listen("tcp", ":"+authpb.GetPort())
+	lis, err := net.Listen("tcp", ":50051")
 
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
