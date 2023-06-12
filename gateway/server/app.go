@@ -40,7 +40,7 @@ func NewApp() *App {
 	}
 	c2 := identifierpb.NewServiceClient(conn)
 
-	conn, err = grpc.Dial("msgpb:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err = grpc.Dial("msg:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
